@@ -10,7 +10,6 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     
-    # TAMBAHAN PENTING: Memberikan izin agar GitHub Actions bisa melakukan push ke repo ini
     permissions:
       contents: write
 
@@ -31,7 +30,6 @@ jobs:
       run: |
         mlflow run MLProject/ --env-manager=local
 
-    # --- TAMBAHAN KUNCI UNTUK 4 PTS: MENYIMPAN ARTEFAK KE GITHUB YANG SAMA ---
     - name: Save Artifacts to GitHub
       run: |
         git config --global user.name 'github-actions[bot]'
