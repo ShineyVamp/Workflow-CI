@@ -5,7 +5,7 @@ import mlflow.sklearn
 import os
 import shutil
 
-df = pd.read_csv('../penguins_preprocessing/penguins_processed.csv')
+df = pd.read_csv('penguins_preprocessing/penguins_processed.csv')
 X = df.drop('species', axis=1)
 y = df['species']
 
