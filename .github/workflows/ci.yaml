@@ -4,10 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Workflow-CI/**' 
   workflow_dispatch:
-  
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -27,7 +25,7 @@ jobs:
 
     - name: Run MLProject
       run: |
-        cd Workflow-CI
+        # Kita sudah berada di root repo, jadi langsung eksekusi MLProject
         mlflow run MLProject/ --env-manager=local
 
     - name: Login to Docker Hub
@@ -38,7 +36,8 @@ jobs:
 
     - name: Build Docker Image using MLflow
       run: |
-        cd Workflow-CI/MLProject
+        # Masuk ke folder MLProject untuk membuild model yang baru dilatih
+        cd MLProject
         mlflow models build-docker -m saved_model -n ${{ secrets.DOCKER_USERNAME }}/penguins-model:latest
 
     - name: Push Docker Image to Docker Hub
