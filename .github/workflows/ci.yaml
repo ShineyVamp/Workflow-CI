@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Workflow-CI/**' # Workflow ini berjalan jika ada perubahan di folder Workflow-CI
+      - 'Workflow-CI/**' 
 
 jobs:
   build-and-push:
