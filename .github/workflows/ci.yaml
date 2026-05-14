@@ -27,7 +27,6 @@ jobs:
     - name: Run MLProject
       run: |
         cd Workflow-CI
-        # Menjalankan MLProject menggunakan env lokal action untuk efisiensi waktu CI
         mlflow run MLProject/ --env-manager=local
 
     - name: Login to Docker Hub
@@ -39,7 +38,6 @@ jobs:
     - name: Build Docker Image using MLflow
       run: |
         cd Workflow-CI/MLProject
-        # Ini adalah perintah kunci (Advance 4 pts) untuk membungkus model menjadi Docker Image
         mlflow models build-docker -m saved_model -n ${{ secrets.DOCKER_USERNAME }}/penguins-model:latest
 
     - name: Push Docker Image to Docker Hub
